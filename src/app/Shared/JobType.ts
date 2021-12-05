@@ -1,0 +1,1 @@
+export enum JobType{ Accountant, HR, FrontEnd_Developer, BackEnd__Developer }

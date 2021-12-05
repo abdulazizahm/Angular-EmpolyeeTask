@@ -1,0 +1,69 @@
+<router-outlet #Outlet="outlet"></router-outlet>
+
+<div class="container-fluid" [hidden]="Outlet.isActivated" style="width:100%">
+  <br>
+  <div>
+    <a class="btn btn-success" routerLink="/empolyee/Add">Add New Employee</a>
+  </div><br>
+  <div class="card">
+
+    <div class="card-body">
+
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th hidden>
+              ID
+            </th>
+            <th>
+              Name
+            </th>
+            <th>
+                SSN
+              </th>
+            <th>
+            Address
+            </th>
+            <th>
+                Salary
+            </th>
+            <th>
+                Date_hired
+            </th>
+            <th>
+                Job
+            </th>
+            <th>
+              Edit
+            </th>
+            <th>
+              Delete
+            </th>
+           
+          </tr>
+
+        </thead>
+        <tbody>
+          <tr *ngFor="let empolyee of empolyees">
+            <td hidden>{{empolyee.Id}}</td>
+            <td>{{empolyee.Name}}</td>
+            <td>{{empolyee.SSN}}</td>
+            <td>{{empolyee.Address}}</td>
+            <td>{{empolyee.Salary}}</td>
+            <td>{{empolyee.Date_hired| date: 'dd/MM/yyyy'}}</td>
+            <td>{{Jobs[empolyee.Job]}}</td>
+            <!--<td><img src="http://localhost:9602/Content/Imgs/Empolyees/{{empolyee.Image}}" width="100px" height="100px"></td>-->
+            <td>
+              <a class="btn btn-primary" routerLink="Edit/{{empolyee.Id}}">Edit Empolyee</a>
+            </td>
+            <td>
+              <a class="btn btn-danger" (click)="deleteEmpolyee(empolyee.Id)" routerLink="/empolyee">Delete Empolyee</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

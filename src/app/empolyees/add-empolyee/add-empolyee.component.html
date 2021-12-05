@@ -1,0 +1,102 @@
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <br>
+        <form action="/" #EmpolyeeForms="ngForm" name="EmpolyeeForm" novalidate (ngSubmit)="onSubmit()">
+  
+          <div>
+            <label for="Image" class="h4">Empolyee Image</label>
+          </div>
+          <div class="form-group" id="imageContainer">
+            <img [src]="imageUrl" width="120px" height="120px">
+  
+            <input type="file" id="avatar" name="avatar" (change)="fileHandle($event.target)"
+              accept="image/png, image/jpeg, image/jpg">
+          </div>
+  
+  
+          <div class="form-group">
+            <label for="Name" class="h4"> Name:</label>
+            <input type="text" class="form-control" id="Name" name="Name"
+              [class.is-invalid]="Name.invalid && Name.touched" required minlength="3" [(ngModel)]="EmpolyeeData.Name" #Name="ngModel" >
+  
+            <div *ngIf="Name.touched && Name.invalid" class="alert">
+              <div class='text-danger h5' ><!--*ngIf="Name.errors?.['required']"   *ngIf="Name.errors?.['minlength']"-->
+                Name is required.
+              </div>
+              <div class='text-danger h5' >
+                Name must be at least 3 characters long.
+              </div>
+            </div>
+            </div>
+          <div class="form-group">
+            <label for="SSN" class="h4"> National Id:</label>
+            <input type="text" class="form-control" id="SSN" name="SSN"
+              [class.is-invalid]="SSN.invalid && SSN.touched" [(ngModel)]="EmpolyeeData.SSN" #SSN="ngModel" required maxlength="14">
+  
+            <div *ngIf="SSN.touched && SSN.invalid">
+              <small class="text-danger h5" >SSN is required</small>
+            </div>
+            
+          </div>
+
+          <div class="form-group">
+            <label for="Address" class="h4">Address:</label>
+            <input type="text" class="form-control" id="Address" name="Address"
+              [class.is-invalid]="Address.invalid &&Address.touched" [(ngModel)]="EmpolyeeData.Address"
+              #Address="ngModel" required>
+              <div *ngIf="Address.touched && Address.invalid">
+                <small class="text-danger h5" >Address is required</small>
+              </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="Salary" class="h4">Salary :</label>
+            <input type="number" class="form-control" id="Salary" name="Salary"
+              [class.is-invalid]="Salary.invalid &&Salary.touched" [(ngModel)]="EmpolyeeData.Salary"
+              #Salary="ngModel" required>
+  
+           <div *ngIf="Salary.touched && Salary.invalid">
+              <small class="text-danger h5" >Salary is required</small>
+            </div>
+          </div>
+          <!--<div class="form-group" hidden>
+            <label for="User_ID">User_ID:</label>
+            <input type="text" class="form-control" id="User_ID" name="User_ID"
+              [class.is-invalid]="User_ID.invalid &&User_ID.touched"
+              [(ngModel)]="EmpolyeeData.User_ID" #User_ID="ngModel" required>
+  
+            <div *ngIf="User_ID.touched && User_ID.invalid">
+              <small class="text-danger" >User_ID is
+                required</small>
+            </div>
+          </div>-->
+  
+          <div class="form-group">
+            <label for="Date_hired" class="h4">Date hired:</label>
+            <input type="date" class="form-control" id="Date_hired" name="Date_hired" [class.is-invalid]="Date_hired.invalid &&Date_hired.touched"
+              [(ngModel)]="EmpolyeeData.Date_hired" #Date_hired="ngModel" required>
+            <div *ngIf="Date_hired.touched && Date_hired.invalid">
+              <small class="text-danger h5" >Date hired is required</small>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label class="h4"> Job:</label>
+            <select #Job="ngModel" required [(ngModel)]="EmpolyeeData.Job" class="form-control"
+              name="Job"> 
+              <option value="0" >Accountant</option>
+              <option value="1" >HR</option>
+              <option value="2" >FrontEnd_Developer</option>
+              <option value="3" >BackEnd__Developer</option>
+            </select>
+          </div>
+          <div class="text-danger"  style="font-weight: bolder;font-size: 20px;margin-top: 10px;">{{eorrors}}</div>
+          <button type="submit" class="btn btn-success mt-2" >Add The Empolyee</button>
+          
+        </form>
+  
+  
+      </div>
+    </div>
+  </div>
